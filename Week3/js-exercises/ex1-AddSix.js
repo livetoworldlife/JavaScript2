@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  
  ** Exercise 1: Add Six **
@@ -10,11 +12,24 @@ Call the function three times. The return values should be:
 
  */
 
-function createBase( /* ???? */ ) {
+
+function createBase(number) {
   // Put here your logic...
+  let sum = 9;
+  let multiplier = 0.5;
+  return function () {
+    multiplier += 0.5;
+    return sum += number * multiplier;
+  };
+
 }
 
-const addSix = createBase(6);
+let addSix = createBase(6);
 
 // Put here your function calls...
-console.log(addSix());
+for (let index = 0; index < 3; index++) {
+  console.log(addSix());
+}
+
+
+// The End

@@ -5,10 +5,201 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tip Calculator</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    body {
+      font-family: 'Roboto', Helvetica, sans-serif;
+      background: linear-gradient(to left, rgb(142, 14, 0), rgb(31, 28, 24));
+    }
+
+    #app {
+      height: 525px;
+      width: 360px;
+      margin: 100px auto;
+      background: #f7f7f7;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+    }
+
+    h1 {
+      background: rgb(31, 3, 12);
+      color: rgb(255, 255, 255);
+      margin: 0;
+      padding: 10px 100px;
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: normal;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
+    p {
+      padding-left: 20px;
+    }
+
+    form input[type="text"] {
+      width: 90px;
+    }
+
+    input {
+      padding-left: 20px;
+    }
+
+    #billamt {
+      font-size: 14px;
+      color: rgb(255, 0, 0);
+      background-color: #f7f7f7;
+      width: 60%;
+      padding: 5px 5px 8px 8px;
+    }
+
+    #billamt:focus {
+      background: rgb(255, 255, 255);
+      border: 3px solid #2980b9;
+      outline: none;
+    }
+
+    #peopleamt {
+      width: 60%;
+      padding: 5px 5px 8px 8px;
+      margin-left: 20px;
+      color: rgb(255, 0, 0);
+      background-color: #f7f7f7;
+      font-size: 14px;
+    }
+
+    #serviceQual {
+      padding: 13px 13px 20px 20px;
+      margin-left: 20px;
+      font-size: 25px;
+    }
+
+    button {
+      font-weight: bold;
+      display: block;
+      margin: 30px auto;
+      background: rgb(173, 19, 58);
+      border-radius: 5px;
+      width: 200px;
+      height: 50px;
+      font-size: 17px;
+      color: rgb(255, 255, 255);
+    }
+
+    button:hover {
+      background: #4b2726;
+      border-bottom-color: rgb(17, 17, 17);
+    }
+
+    button:active {
+      position: relative;
+      top: 1px;
+    }
+
+    #totalTip {
+      font-size: 30px;
+      margin-top: 5px;
+      text-align: center;
+    }
+
+    #totalTip:before {
+      content: "Tip amount";
+      font-size: 20px;
+      font-weight: bold;
+      display: block;
+      text-transform: uppercase;
+    }
+
+    #totalTip sup {
+      font-size: 20px;
+      top: -18px;
+    }
+
+    #totalTip small {
+      font-size: 20px;
+      font-weight: bold;
+      display: block;
+    }
+
+    /* Modal css */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background: rgb(255, 255, 255);
+      text-align: center;
+      margin: 10% auto;
+      font-size: 1.2rem;
+      width: 350px;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
+      animation-name: modalopen;
+      animation-duration: 1s;
+    }
+
+    .modal-content h2 {
+      margin-bottom: 1rem;
+      padding: 0;
+      color: rgb(31, 3, 12);
+    }
+
+    @keyframes modalopen {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <h1>TIP CALCULATOR</h1>
+    <div id="calculator">
+      <form>
+        <p>How much was your bill?
+          <p>
+            <span>$ </span> <input id="billamt" type="text" title="Enter your bill amount here."
+              placeholder="Bill Amount">
+            <p>How was your service?
+              <p>
+                <select id="serviceQual">
+                  <option disabled selected value="0">-- Choose an Option --</option>
+                  <option value="0.3">30&#37; &#45; Outstanding</option>
+                  <option value="0.2">20&#37; &#45; Good</option>
+                  <option value="0.15">15&#37; &#45; It was OK</option>
+                  <option value="0.1">10&#37; &#45; Bad</option>
+                  <option value="0.05">5&#37; &#45; Terrible</option>
+                </select>
+      </form>
+      <p>How many people are sharing the bill?</p>
+      <input id="peopleamt" type="text" title="Enter number of people here." placeholder="Number of People">
+      <span>people</span>
+      <button type="button" id="calculate">CALCULATE!</button>
+    </div>
+    <div id="totalTip">
+      <sup>$</sup><span id="tip">0.00</span>
+      <small id="each">each</small>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal">
+    <div id="result" class="modal-content"></div>
+  </div>
   <script src="index.js"></script>
 </body>
 
