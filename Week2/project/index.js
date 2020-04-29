@@ -43,7 +43,7 @@ resetBtn.addEventListener('click', () => {
 })
 
 minusBtn.addEventListener('click', () => {
-  console.log(isPaused);
+
   if (isPaused === true) {
     workTime = Math.max(workTime - 1, 0);
     seconds = workTime * 60;
@@ -73,7 +73,7 @@ function timer() {
 function countdownDisplay() {
   let minutes = Math.floor(seconds / 60);
   let remainderSeconds = seconds % 60;
-  console.log(minutes, remainderSeconds)
+  
   if (minutes <= 0 && remainderSeconds <= 0) {
     timerDisplay.textContent = "Time is up!";
   } else {
