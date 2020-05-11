@@ -35,7 +35,7 @@ function threeFive(startIndex, stopIndex, threeCallback, fiveCallback) {
   for (let currentIndex = startIndex; currentIndex <= stopIndex; currentIndex++) {
     numbers.push(currentIndex);
   }
-  Array.from({ length: end - start + 1 }, (_, i) => i)
+ 
   // start at beginning of array and check if you should call threeCallback or fiveCallback or go on to next
   numbers.forEach(item => {
     if (item % 3 === 0 && item % 5 === 0) {
